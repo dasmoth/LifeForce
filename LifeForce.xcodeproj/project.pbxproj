@@ -12,6 +12,8 @@
 		E969E9401F65500900CF8797 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E969E93E1F65500900CF8797 /* Main.storyboard */; };
 		E969E9421F65500900CF8797 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E969E9411F65500900CF8797 /* Assets.xcassets */; };
 		E969E9451F65500900CF8797 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E969E9431F65500900CF8797 /* LaunchScreen.storyboard */; };
+		E969E94D1F6598AC00CF8797 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E969E94C1F6598AC00CF8797 /* GridView.swift */; };
+		E969E94F1F6598D500CF8797 /* Conway.swift in Sources */ = {isa = PBXBuildFile; fileRef = E969E94E1F6598D500CF8797 /* Conway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		E969E9411F65500900CF8797 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E969E9441F65500900CF8797 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E969E9461F65500900CF8797 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E969E94C1F6598AC00CF8797 /* GridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		E969E94E1F6598D500CF8797 /* Conway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				E969E9411F65500900CF8797 /* Assets.xcassets */,
 				E969E9431F65500900CF8797 /* LaunchScreen.storyboard */,
 				E969E9461F65500900CF8797 /* Info.plist */,
+				E969E94C1F6598AC00CF8797 /* GridView.swift */,
+				E969E94E1F6598D500CF8797 /* Conway.swift */,
 			);
 			path = LifeForce;
 			sourceTree = "<group>";
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E969E94F1F6598D500CF8797 /* Conway.swift in Sources */,
 				E969E93D1F65500900CF8797 /* ViewController.swift in Sources */,
+				E969E94D1F6598AC00CF8797 /* GridView.swift in Sources */,
 				E969E93B1F65500900CF8797 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +310,7 @@
 				E969E94B1F65500900CF8797 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
