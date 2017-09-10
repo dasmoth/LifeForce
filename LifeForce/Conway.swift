@@ -38,7 +38,7 @@ func neighbours(cell: Cell) -> [Cell] {
     ]
 }
 
-func frequencies<T>(items: [T]) -> [T: Int] {
+func frequencies<T,S:Sequence>(items: S) -> [T: Int] where S.Iterator.Element == T {
     var freqs = [T:Int]();
     for item in items {
         if let prevCount = freqs[item] {
