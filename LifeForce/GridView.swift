@@ -129,7 +129,10 @@ class GridView: UIView, UIPreviewInteractionDelegate {
         let h = self.bounds.height;
         let w = self.bounds.width;
         
-        let gridColor:UIColor = UIColor.gray;
+        var gridColor:UIColor = UIColor.gray;
+        if (scale < 2) {
+            gridColor = UIColor(white: CGFloat(1.0 - (0.25 * scale)), alpha: 1.0);
+        }
         
         let grid:UIBezierPath = UIBezierPath()
         grid.lineWidth = CGFloat(0.5 / scale);
