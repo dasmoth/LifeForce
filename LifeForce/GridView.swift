@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import AudioToolbox
 
 func clamp(_ minVal: CGFloat, _ x: CGFloat, _ maxVal: CGFloat) -> CGFloat {
     return min(maxVal, max(minVal, x));
 }
 
-class GridView: UIView, UIPreviewInteractionDelegate {
+class GridView: UIView {
     let pixelsPerCell:CGFloat = 4;
     var rows:Int = 0;
     var cols:Int = 0;
@@ -38,9 +39,8 @@ class GridView: UIView, UIPreviewInteractionDelegate {
     var scale = 1.0;
     var xfrm = CGAffineTransform(scaleX: 1.0, y: 1.0);
     var timer:Timer? = nil;
-    var preview:UIPreviewInteraction? = nil;
     
-    var activeCells = Set<Cell>() {
+    var activeCells = Set<Cell>([Cell(x: 40, y: 60), Cell(x: 40, y: 61), Cell(x: 40, y: 62), Cell(x: 41, y: 60), Cell(x: 39, y: 61)]) {
         didSet {
             setNeedsDisplay();
         }
@@ -193,10 +193,9 @@ class GridView: UIView, UIPreviewInteractionDelegate {
         if let touch = touches.first {
             touchPoint = touch.location(in: self);
             if (touch.force < 3 && !primed) {
-                preview?.delegate = self;
                 primed = true;
-                preview = UIPreviewInteraction(view: self);
             } else if (touch.force > 5 && primed) {
+                AudioServicesPlaySystemSound(1520);
                 primed = false;
                 
                 if let tp = xfrmedTouchPoint {
@@ -217,20 +216,4 @@ class GridView: UIView, UIPreviewInteractionDelegate {
         touching = false;
         setNeedsDisplay();
     }
-    
-    func previewInteractionShouldBegin(_ previewInteraction: UIPreviewInteraction) -> Bool {
-        return true;
-    }
-    
-    func previewInteraction(_ previewInteraction: UIPreviewInteraction, didUpdateCommitTransition transitionProgress: CGFloat, ended: Bool) {
-        previewInteraction.cancel();
-        
-    }
-    
-    func previewInteraction(_ previewInteraction: UIPreviewInteraction, didUpdatePreviewTransition transitionProgress: CGFloat, ended: Bool) {
-    }
-    
-    func previewInteractionDidCancel(_ previewInteraction: UIPreviewInteraction) {
-    }
-
 }

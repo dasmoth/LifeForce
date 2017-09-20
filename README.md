@@ -8,7 +8,14 @@ features on other devices as "Force Touch", and that made a better name...
 A gentle touch on the screen zooms in.  A firmer touch toggles a cell on or off (and should give some feedback via the device's
 "Taptic engine", too).  You need to release pressure slightly before pressing again to toggle another cell.
 
-The haptic feedback is actually a bit of a hack, and somewhat abuses the `UIPreviewInteraction` API.  On iPhone 7 and later,
-there's a much more flexible `UIImpactFeedbackGenerator` API, but I don't currently have a suitable device for testing.
+Ideally, the haptic feedback would be done using the
+`UIImpactFeedbackGenerator` API, but this is only supported on devices
+with a second generation Taptic engine (iPhone 7 and later), and I
+don't currently have a suitable device for testing.  The original
+version abused `UIPreviewInteraction` to get a similar effect, but
+this seems to have been broken by iOS 11.  Fortunately, there's
+an alternative way of triggering feedback
+[via AudioToolbox](http://www.mikitamanko.com/blog/2017/01/29/haptic-feedback-with-uifeedbackgenerator/)
+so now I'm using that instead.
 
 Happy Tapping!
