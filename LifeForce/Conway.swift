@@ -6,9 +6,7 @@
 //  Copyright © 2017 Thomas Down. All rights reserved.
 //
 
-import Foundation
-
-struct Cell : Hashable {
+struct Cell : Hashable, Codable {
     let x:Int;
     let y:Int;
     

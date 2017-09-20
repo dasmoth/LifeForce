@@ -61,7 +61,7 @@ class GridView: UIView {
         timer = nil;
     }
     
-    func update() {
+    @objc func update() {
         var newScale = scale;
         if (touching) {
             newScale = newScale + scaleChangePerTouchingFrame;

@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         timer = nil;
     }
     
-    func update() {
+    @objc func update() {
         if (running) {
             frameNumber += 1;
             grid.activeCells = step(grid.activeCells);
@@ -52,7 +52,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationDidBecomeActive, object: nil, queue: nil, using: { _ in self.makeTimer() });
-        NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationWillResignActive, object: nil, queue: nil, using: { _ in self.running = false; self.killTimer() });
+        NotificationCenter.default.addObserver(forName: Notification.Name.UIApplicationWillResignActive, object: nil, queue: nil, using: { _ in self.running = false;
+            self.killTimer();
+            self.saveState();
+        });
+        
+        tryLoadState();
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,6 +76,29 @@ class ViewController: UIViewController {
         running = false;
         frameNumber = 0;
         grid.activeCells = Set<Cell>();
+    }
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let SavedStateURL = DocumentsDirectory.appendingPathComponent("lifeforcestate")
+    
+    func saveState() {
+        do {
+            let d = try JSONEncoder().encode(grid.activeCells);
+            try d.write(to: ViewController.SavedStateURL);
+            print("saved");
+        } catch {
+            print("save failed");
+        }
+    }
+    
+    func tryLoadState() {
+        do {
+            let d = try Data(contentsOf: ViewController.SavedStateURL);
+            let cells = try JSONDecoder().decode([Cell].self, from: d);
+            grid.activeCells = Set(cells);
+        } catch {
+            print("load failed");
+        }
     }
 }
 
